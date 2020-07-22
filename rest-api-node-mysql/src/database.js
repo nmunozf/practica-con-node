@@ -1,6 +1,6 @@
 const mysql = require('mysql');
 
-const mysqlConnection = mysql.createConnection({
+const mysqlConnection = mysql.createConnection({ // se crea conexion a BD
     host: 'localhost',
     user: 'root',
     password: 'nicolas123',
