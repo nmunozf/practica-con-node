@@ -7,8 +7,20 @@ router.get('/add',(req,res)=>{
     res.render('belongings/add');
 });
 
-router.post('/add',(req,res)=>{
-    res.send('recibido');
+router.post('/add',async(req,res)=>{
+    const {titulo,descripcion} = req.body;
+    const newBelongings ={
+        titulo,
+        descripcion
+    };
+    await pool.query('insert into pertenencias set ?',[newBelongings]);
+    res.redirect('/belongings'); 
+});
+
+router.get('/',async(req,res)=>{
+    const belongings = await pool.query('select * from pertenencias');
+    //console.log(belongings);
+    res.render('belongings/list',{belongings});
 });
 
 // exportar rutas
